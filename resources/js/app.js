@@ -7,7 +7,8 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
-
+window.moment = require('moment');
+window.$ = require("jquery");
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -20,6 +21,11 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('header-component', require('./components/HeaderComponent.vue').default);
+Vue.component('menu-component', require('./components/MenuComponent.vue').default);
+Vue.component('marcacion-component', require('./components/MarcacionComponent.vue').default);
+Vue.component('historico-component', require('./components/HistoricoComponent.vue').default);
+Vue.component('notificacion-component', require('./components/NotificacionComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -29,4 +35,15 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 const app = new Vue({
     el: '#app',
+    data() {
+        return {
+            user:[]
+        }
+    },
+    created(){
+        let vm = this
+        axios.get('/users').then(({data})=>{
+            vm.user = data
+        })
+    }
 });

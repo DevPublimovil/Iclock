@@ -2,4 +2,125 @@
 
 @import "tailwindcss/components";
 
+.union-btn{
+    @apply table-cell text-indigo-600 cursor-pointer border border-indigo-400 rounded py-2 px-2 text-xs mx-0 my-0
+}
+.union-btn:hover{
+    @apply bg-indigo-500 text-white
+}
+
+.union-btn-active{
+    @apply bg-indigo-500
+}
+
+.btn-circle-xs{
+    @apply border-2 border-indigo-400 cursor-pointer  rounded-full px-2 py-1 text-xs
+}
+
+.btn-circle-xs:hover{
+    @apply bg-indigo-500 text-white
+}
+
+.btn-circle{
+    @apply bg-transparent py-2 px-3 border border-indigo-500 rounded-full items-center justify-center
+}
+
+.btn-circle:hover{
+    @apply bg-indigo-500 text-white
+}
+
+.button{
+    @apply inline-block text-black text-center align-middle bg-transparent px-3 py-2 rounded m-1
+}
+
+.button-one{
+    @apply text-white bg-indigo-600
+}
+
+.button-one:hover{
+    @apply text-white bg-indigo-500
+}
+
+.button-outline-one{
+    @apply text-indigo-600 border border-indigo-500
+}
+
+.button-outline-one:hover{
+    @apply button-one border border-indigo-500
+}
+
+.button-two{
+    @apply text-white bg-gray-600
+}
+
+.button-two:hover{
+    @apply text-white bg-gray-500
+}
+
+.button-outline-two{
+    @apply text-gray-600 border border-gray-500
+}
+
+.button-outline-two:hover{
+    @apply button-two border border-gray-500
+}
+
+.button-three{
+    @apply text-white bg-blue-600
+}
+
+.button-three:hover{
+    @apply text-white bg-blue-500
+}
+
+.button-outline-three{
+    @apply text-blue-600 border border-blue-500
+}
+
+.button-outline-three:hover{
+    @apply button-three border border-blue-500
+}
+
+//button warning
+.button-four{
+    @apply text-black bg-yellow-400
+}
+
+.button-four:hover{
+    @apply text-black bg-yellow-500
+}
+
+.button-outline-four{
+    @apply text-yellow-600 border border-yellow-500
+}
+
+.button-outline-four:hover{
+    @apply button-four border border-yellow-500
+}
+
+//button danger
+.button-five{
+    @apply text-white bg-red-400
+}
+
+.button-five:hover{
+    @apply text-white bg-red-500
+}
+
+.button-outline-five{
+    @apply text-red-600 border border-red-500
+}
+
+.button-outline-five:hover{
+    @apply button-five border border-red-500
+}
+//datataables
+
+.dataTables_wrapper select,
+.dataTables_wrapper .dataTables_filter input{
+    @apply text-gray-700 mx-2 px-2 leading-tight border-2 border-gray-200 rounded py-1
+}
+
+
 @import "tailwindcss/utilities";
+

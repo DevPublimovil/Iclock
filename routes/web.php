@@ -19,8 +19,18 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-
+Route::group(['middleware' => ['auth']], function(){
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/users', 'UserController@getuser')->name('users.getuser');
+    Route::get('/users/{id}', 'UserController@show')->name('users.show');
+    Route::put('/users/{id}', 'UserController@update')->name('users.update');
+    Route::get('/users/firma/{id}', 'UserController@getfirma')->name('users.getfirma');
+    Route::put('/users/updatefirma/{id}', 'UserController@updatefirma')->name('users.updatefirma');
+    Route::resource('/empleados', 'EmpleadosController');
+    Route::get('/getempleados', 'EmpleadosController@getEmpleados')->name('empleados.getempleados');
+    Route::resource('/acciones', 'AccionesController');
+    Route::get('/getactions', 'AccionesController@getactions')->name('actions.getactions');
+});
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();

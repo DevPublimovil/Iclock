@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\User as UserResource;
 use Illuminate\Http\Request;
+use App\User;
+use Auth;
+use App\Employee;
 
 class HomeController extends Controller
 {
@@ -23,6 +27,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $user = User::find(Auth::id())->load(['employee' => function($query){
+            $query->with(['departament:id,name_departament','company:id,name_company']);
+        },'country:id,name,abbreviation,image']);
+
+        return view('home', compact('user'));
     }
 }
