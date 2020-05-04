@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Resources\User as UserResource;
 use App\User;
 use Auth;
+use Image;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
@@ -64,18 +65,29 @@ class UserController extends Controller
     
     public function updatefirma(Request $request, $id)
     {
-        if($request->imagefirma){
+        if($request->imagefirma)
+        {
+            $cadena = str_replace('data:image/png;base64,', '', $request->imagefirma);
+            $cadena = str_replace(' ', '+', $cadena);
+            $img = Image::make($cadena)->encode('png', 75);
+            $imageName = Str::random(10).'_'.$id.'.png';
+            Storage::disk('public')->put('firmas/' . $imageName, $img);
+        }
+
+        return 'ok';
+        /* if($request->imagefirma){
             $image = $request->imagefirma;  // your base64 encoded
             $image = str_replace('data:image/png;base64,', '', $image);
             $image = str_replace(' ', '+', $image);
             $imageName = Str::random(10).'_'.$id.'.png';
-           \File::put(storage_path(). '/app/public/firmas/' . $imageName, base64_decode($image));
-
-           /* $user = User::find($id);
-           $user->update([
-               'firma' => 'firmas/'.$imageName,
-           ]); */
+            $path = '/app/public';
+            if(!Storage::exists($path))
+            {
+                $directories = Storage::makeDirectory($path);
+                return $directories;
+            }
+           \File::put( $path . $imageName, base64_decode($image));
         }
-        return redirect()->route('users.show', $id)->with('¡Su firma se guardo correctamente!');
+        return redirect()->route('users.show', $id)->with('¡Su firma se guardo correctamente!'); */
     }
 }
